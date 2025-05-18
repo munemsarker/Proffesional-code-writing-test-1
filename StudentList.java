@@ -18,11 +18,13 @@ public class StudentList {
                 String r = s.readLine();
                 String[] i = r.split(",");
                 for (String j : i) {
-                    System.out.println(j);
+                    System.out.println(j.trim());
                 }
-            } catch (Exception e) {
                 System.out.println("Data Loaded.");
+            } catch (Exception e) {
+                System.out.println("An error occurred while loading data.");
             }
+
         } else if (args[0].equals("r")) {
             System.out.println("Loading data ...");
             try {
@@ -32,14 +34,16 @@ public class StudentList {
                     )
                 );
                 String r = g.readLine();
-                System.out.println(r);
+                //System.out.println(r);
                 String[] i = r.split(",");
                 Random x = new Random();
                 int y = x.nextInt(i.length);
-                System.out.println(i[y]);
+                System.out.println(i[y].trim());
+            System.out.println("Data Loaded.");
             } catch (Exception e) {
-                System.out.println("Data Loaded.");
+                System.out.println("An error occurred while loading data.");
             }
+
         } else if (args[0].contains("+")) {
             System.out.println("Loading data ...");
             try {
@@ -53,8 +57,9 @@ public class StudentList {
                 String fd = dateFormat.format(d);
                 s.write(", " + t + "\nList last updated on " + fd);
                 s.close();
+            System.out.println("Data Loaded.");
             } catch (Exception e) {
-                System.out.println("Data Loaded.");
+                System.out.println("An error occurred while loading data.");
             }
         } else if (args[0].contains("?")) {
             System.out.println("Loading data ...");
@@ -74,8 +79,9 @@ public class StudentList {
                         done = true;
                     }
                 }
+            System.out.println("Data Loaded.");
             } catch (Exception e) {
-                System.out.println("Data Loaded.");
+                System.out.println(" An error occurred while loading data.");
             }
         } else if (args[0].contains("c")) {
             System.out.println("Loading data ...");
@@ -90,7 +96,7 @@ public class StudentList {
                 boolean in_word = false;
                 int count = 0;
                 for (char c : a) {
-                    if (c == ' ') {
+                    if (c == ' ' || c == '\n' || c == ',') {
                         if (!in_word) {
                             count++;
                             in_word = true;
@@ -99,9 +105,10 @@ public class StudentList {
                         in_word = false;
                     }
                 }
-                System.out.println(count + " word(s) found " + a.length);
+                System.out.println(count-1 + " word(s) found ");
+            System.out.println("Data Loaded.");
             } catch (Exception e) {
-                System.out.println("Data Loaded.");
+                System.out.println("An error occurred while loading data.");
             }
         }
     }
