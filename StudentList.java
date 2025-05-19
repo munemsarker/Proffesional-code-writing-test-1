@@ -6,22 +6,23 @@ import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
 
+        // Step 2: Handle missing argument
         if (args.length == 0) {
             System.out.println("Error: No command-line argument provided. Please enter a valid argument.");
             return;
         }
 
-        //show all students
+        // Show all students
         if (args[0].equals("a")) {
             System.out.println("Loading data...");
             try {
                 BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream("students.txt"))
                 );
-                String data = reader.readLine();
-                String[] students = data.split(",");
-                for (String student : students) {
-                    System.out.println(student.trim());
+                String studentDataLine = reader.readLine();
+                String[] studentNames = studentDataLine.split(",");
+                for (String studentName : studentNames) {
+                    System.out.println(studentName.trim());
                 }
                 reader.close();
                 System.out.println("Data Loaded.");
@@ -29,58 +30,58 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        //show random student
+        // Show a random student
         } else if (args[0].equals("r")) {
             System.out.println("Loading data...");
             try {
                 BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream("students.txt"))
                 );
-                String data = reader.readLine();
-                String[] students = data.split(",");
-                Random random = new Random();
-                int randomIndex = random.nextInt(students.length);
-                System.out.println(students[randomIndex].trim());
+                String studentDataLine = reader.readLine();
+                String[] studentNames = studentDataLine.split(",");
+                Random randomGenerator = new Random();
+                int randomIndex = randomGenerator.nextInt(studentNames.length);
+                System.out.println(studentNames[randomIndex].trim());
                 reader.close();
                 System.out.println("Data Loaded.");
             } catch (Exception e) {
                 System.out.println("An error occurred while loading data.");
             }
 
-        //Add a student
+        // Add a student
         } else if (args[0].contains("+")) {
             System.out.println("Loading data...");
             try {
                 BufferedWriter writer = new BufferedWriter(
                     new FileWriter("students.txt", true)
                 );
-                String studentToAdd = args[0].substring(1);
-                Date date = new Date();
-                String dateFormat = "dd/MM/yyyy-hh:mm:ss a";
-                DateFormat formatter = new SimpleDateFormat(dateFormat);
-                String formattedDate = formatter.format(date);
-                writer.write(", " + studentToAdd + "\nList last updated on " + formattedDate);
+                String newStudentName = args[0].substring(1);
+                Date currentDate = new Date();
+                String dateFormatPattern = "dd/MM/yyyy-hh:mm:ss a";
+                DateFormat dateFormatter = new SimpleDateFormat(dateFormatPattern);
+                String formattedDate = dateFormatter.format(currentDate);
+                writer.write(", " + newStudentName + "\nList last updated on " + formattedDate);
                 writer.close();
                 System.out.println("Data Loaded.");
             } catch (Exception e) {
                 System.out.println("An error occurred while loading data.");
             }
 
-        //Search for a student
+        // Search for a student
         } else if (args[0].contains("?")) {
             System.out.println("Loading data...");
             try {
                 BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream("students.txt"))
                 );
-                String data = reader.readLine();
-                String[] students = data.split(",");
-                boolean found = false;
-                String searchTerm = args[0].substring(1);
-                for (int i = 0; i < students.length && !found; i++) {
-                    if (students[i].trim().equals(searchTerm)) {
+                String studentDataLine = reader.readLine();
+                String[] studentNames = studentDataLine.split(",");
+                boolean isFound = false;
+                String searchName = args[0].substring(1);
+                for (int i = 0; i < studentNames.length && !isFound; i++) {
+                    if (studentNames[i].trim().equals(searchName)) {
                         System.out.println("We found it!");
-                        found = true;
+                        isFound = true;
                     }
                 }
                 reader.close();
@@ -89,16 +90,16 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        //count words
+        // Count words
         } else if (args[0].equals("c")) {
             System.out.println("Loading data...");
             try {
                 BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream("students.txt"))
                 );
-                String data = reader.readLine();
-                String[] students = data.split(",");
-                System.out.println(students.length + " word(s) found");
+                String studentDataLine = reader.readLine();
+                String[] studentNames = studentDataLine.split(",");
+                System.out.println(studentNames.length + " word(s) found");
                 reader.close();
                 System.out.println("Data Loaded.");
             } catch (Exception e) {
