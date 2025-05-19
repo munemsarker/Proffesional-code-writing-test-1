@@ -7,11 +7,11 @@ public class StudentList {
     public static void main(String[] args) {
 
         if (args.length == 0) {
-            System.out.println("No arguments provided.");
+            System.out.println("Error: No command-line argument provided. Please enter a valid argument.");
             return;
         }
 
-        // Option 1: Show all students
+        //show all students
         if (args[0].equals("a")) {
             System.out.println("Loading data...");
             try {
@@ -29,7 +29,7 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        // Option 2: Show random student
+        //show random student
         } else if (args[0].equals("r")) {
             System.out.println("Loading data...");
             try {
@@ -47,7 +47,7 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        // Option 3: Add a student
+        //Add a student
         } else if (args[0].contains("+")) {
             System.out.println("Loading data...");
             try {
@@ -66,7 +66,7 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        // Option 4: Search for a student
+        //Search for a student
         } else if (args[0].contains("?")) {
             System.out.println("Loading data...");
             try {
@@ -89,7 +89,7 @@ public class StudentList {
                 System.out.println("An error occurred while loading data.");
             }
 
-        // Option 5: Count words
+        //count words
         } else if (args[0].equals("c")) {
             System.out.println("Loading data...");
             try {
